@@ -55,6 +55,35 @@ weight_mean
 # 3. rendezem az átlagsúly szerint csökkenő sorrendbe
 weight_mean[order(weight_mean$x,  decreasing = TRUE), ]
 
+#--- IV. feladat ---------------------------------------------------------------
+
+# 1. mátrix létrehozása (50 x 10), aminek értékei normális eloszlásból 
+# származnak, és minden sor szórása egyenlő a sor számával
+m <- matrix(NA,nrow=50,ncol=10)
+for (i in 1:nrow(m)){
+  m[i,]<-rnorm(ncol(m),mean=0,sd=i)
+}
+
+# 2. Minden sor szórásának kiszámítása for ciklussal, a végeredmény vektor
+szoras <- NA
+for (i in 1: nrow(m)){
+  szoras[i] <-
+    sd(m[i, ])
+}
+# kiiratom
+szoras
+
+# 3. most ugyanez az apply függvénycsalád egy tagjával
+apply(m,1,sd)
+
+# 4. normalizálom a mátrix értékeit -1-től 1-ig tartó intervallumra
+# új mátrixba mentem
+m2 <- 
+  -1+2*(m-min(m))/(max(m)-min(m))
+# megnézem a sorok átlagát
+apply(m2,1,mean)
+
+
 
 
 
