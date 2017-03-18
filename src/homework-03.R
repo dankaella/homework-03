@@ -36,4 +36,26 @@ lapply(mylist, function(x) length(x))
 # de ez a default, nem kell beállítani
 sapply(mylist, function(x) length(x))
 
+#--- III. feladat --------------------------------------------------------------
+
+# 1. chickwts dataset behívása
+data(chickwts)
+head(chickwts)
+# megnézem a datasetet, és az, hogy miről is szól
+View(chickwts)
+?chickwts
+
+# 2. mennyi az átlagsúlya a különbözőképp táplált csirkéknek
+# rögtön létrehozok belőle egy dataframet weight_mean névvel
+weight_mean <- 
+  aggregate(chickwts$weight, by = list(feed = chickwts$feed), mean)
+# kiíratom
+weight_mean
+
+# 3. rendezem az átlagsúly szerint csökkenő sorrendbe
+weight_mean[order(weight_mean$x,  decreasing = TRUE), ]
+
+
+
+
 
